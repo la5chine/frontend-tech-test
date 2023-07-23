@@ -1,15 +1,24 @@
 import React from 'react';
 import CharactersSection from '../CharactersSection';
 import Pagination from '../Pagination';
+import { searchCharacters } from '../../api';
 
 
-const Results = ({ results, totalCount, searchTerm }) => {
-
+const Results = ({
+  setResults,
+  results,
+  totalCount,
+  searchTerm
+}) => {
+  const paginate = (pageNumber) => {
+    searchCharacters(searchTerm, (pageNumber - 1) * 4)
+      .then(({ data }) => setResults(data.data?.results ? data.data.results : []));
+  };
 
   return (
     <>
       <CharactersSection results={results}/>
-      <Pagination totalCount={totalCount}/>
+      <Pagination paginate={paginate} totalCount={totalCount}/>
     </>
   );
 };
