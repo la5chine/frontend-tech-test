@@ -6,24 +6,26 @@ import { ListItem, Size, Thumbnail } from '@lumx/react';
 const Results = ({ results }) => {
 
 
-  return (< List>
-    {
-      results.map((result, index) => (
-        <ListItem
-          key={index}
-          size={Size.big}
-        >
-          <Thumbnail
-            image={result.thumbnail.path + '.' + result.thumbnail.extension}
-            alt="Marvel-character"
-            aspectRatio={AspectRatio.original}
-            size={Size.xl}
-          />
-          <span>{result.name}</span>
-        </ListItem>
-      ))
-    }
-  </List>);
+  return (
+    <List>
+      {
+        results.map((result, index) => (
+          <ListItem
+            key={index}
+            size={Size.big}
+          >
+            <Thumbnail
+              image={result.thumbnail.path + '.' + result.thumbnail.extension}
+              alt="Marvel-character"
+              aspectRatio={AspectRatio.original}
+              size={Size.xl}
+            />
+            <span>{result.name}</span>
+          </ListItem>
+        ))
+      }
+    </List>
+  );
 };
 
 
