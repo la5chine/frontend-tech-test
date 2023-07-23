@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextField, Theme } from '@lumx/react';
 import { mdiMagnify } from '@lumx/icons';
 import { get } from '../../api';
