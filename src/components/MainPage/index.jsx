@@ -4,12 +4,13 @@ import Results from '../Results';
 
 
 const MainPage = () => {
+  const [searchTerm, setSearchTerm] = useState("")
   const [results, setResults] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   return (
     <>
-      <Header setResults={setResults} setTotalCount={setTotalCount}/>
-      <Results results={results} totalCount={totalCount}/>
+      <Header setResults={setResults} setTotalCount={setTotalCount} setSearchTerm={setSearchTerm}/>
+      <Results results={results} totalCount={totalCount} searchTerm={searchTerm}/>
     </>
   );
 };

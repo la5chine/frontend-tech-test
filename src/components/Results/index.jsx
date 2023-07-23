@@ -3,7 +3,7 @@ import CharactersSection from '../CharactersSection';
 import Pagination from '../Pagination';
 
 
-const Results = ({ results, totalCount }) => {
+const Results = ({ results, totalCount, searchTerm }) => {
 
 
   return (
