@@ -2,17 +2,17 @@
 import React from 'react';
 import './App.scss';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+	BrowserRouter as Router,
+	Switch,
+	Route,
 } from 'react-router-dom';
-import Header from '../components/Header';
+import MainPage from '../components/MainPage';
 
 function App() {
   return (
 	<>
 		<Router>
-			<Header />
+			<MainPage/>
 			<Switch>
 				<Route
 					exact
