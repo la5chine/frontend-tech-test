@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header';
 import Results from '../Results';
 
 
 const MainPage = () => {
+  const [results, setResults] = useState([]);
   return (
     <>
-      <Header/>
-      <Results/>
+      <Header setResults={setResults}/>
+      <Results results={results}/>
     </>
   );
 };
