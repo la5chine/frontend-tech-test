@@ -11,7 +11,7 @@ const Pagination = ({ totalCount }) => {
   return (
     <>
       {[...Array(NumberOfPages+1).keys()].slice(1).map((pageNumber) =>
-        <Button isDisabled={currentPage === pageNumber}>{pageNumber}</Button>
+        <Button key={pageNumber} isDisabled={currentPage === pageNumber}>{pageNumber}</Button>
       )}
     </>
   );
