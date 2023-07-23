@@ -3,7 +3,7 @@ import { AspectRatio, List } from '@lumx/react';
 import { ListItem, Size, Thumbnail } from '@lumx/react';
 
 
-const CharacterSection = ({ results }) => {
+const CharactersSection = ({ results }) => {
 
 
   return (
@@ -29,4 +29,4 @@ const CharacterSection = ({ results }) => {
 };
 
 
-export default CharacterSection;
+export default CharactersSection;
