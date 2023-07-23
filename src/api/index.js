@@ -16,4 +16,10 @@ const get = (url, query) => instance.get(url, {
   },
 });
 
-export { instance as api, get };
+const searchCharacters = (searchTerm, offset=0) => get('characters', {
+  nameStartsWith: searchTerm,
+  limit: 4,
+  offset: offset
+});
+
+export { instance as api, get, searchCharacters };
