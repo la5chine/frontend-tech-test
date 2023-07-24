@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from '@lumx/react';
 
 
@@ -10,7 +10,7 @@ const Pagination = ({
   const postsPerPage = 4;
   const NumberOfPages = Math.ceil(totalCount / postsPerPage);
 
-  const getShownPages = (selectedPage) => {
+  const getShownPages = useCallback((selectedPage) => {
     const dummyShownPages = [1, 2, parseInt(selectedPage), parseInt(selectedPage) + 1, parseInt(selectedPage) + 2,
       NumberOfPages - 1, NumberOfPages];
     return dummyShownPages.filter(
@@ -21,7 +21,7 @@ const Pagination = ({
       .sort(function (a, b) {
         return a - b;
       });
-  };
+  }, [NumberOfPages]);
 
   const [shownPages, setShownPages] = useState(getShownPages(1));
 
@@ -31,6 +31,10 @@ const Pagination = ({
     return paginate(pageNumber);
   };
 
+
+  useEffect(() => {
+    setShownPages(getShownPages(1));
+  }, [totalCount, getShownPages]);
 
   return (
     <>
