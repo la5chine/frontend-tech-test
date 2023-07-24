@@ -8,6 +8,11 @@ const Search = ({ setResults, setTotalCount, setSearchTerm }) => {
 
   const fetchUserData = (searchTerm) => {
     setSearchTerm(searchTerm);
+    if (searchTerm === '') {
+      setTotalCount(0)
+      setResults([])
+      return
+    }
     searchCharacters(searchTerm)
       .then(({ data }) => {
         setTotalCount(data.data?.total ? data.data.total : 0);
