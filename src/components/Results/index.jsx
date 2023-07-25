@@ -20,18 +20,21 @@ const Results = ({
 
   return (
     <FlexBox className="lumx-flex-box--orientation-vertical lumx-flex-box--v-align-center">
-      { isLoading ?
+      {isLoading ?
         <div className="loader-container">
           <div className="spinner"></div>
         </div>
         :
-        totalCount > 0 ?
-        <>
-          <CharactersSection results={results}/>
-          <Pagination paginate={paginate} totalCount={totalCount}/>
-        </>
-        :
-        <h4>No results found!</h4>
+        hasError ?
+          <h4>Got an error, please try again !</h4>
+          :
+          totalCount > 0 ?
+            <>
+              <CharactersSection results={results}/>
+              <Pagination paginate={paginate} totalCount={totalCount}/>
+            </>
+            :
+            <h4>No results found!</h4>
       }
     </FlexBox>
   );
