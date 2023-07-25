@@ -1,30 +1,24 @@
 import React from 'react';
-import { AspectRatio, List } from '@lumx/react';
-import { ListItem, Size, Thumbnail } from '@lumx/react';
 
 
 const CharactersSection = ({ results }) => {
 
 
   return (
-    <List>
+    <div>
       {
         results.map((result, index) => (
-          <ListItem
-            key={index}
-            size={Size.big}
-          >
-            <Thumbnail
-              image={result.thumbnail.path + '.' + result.thumbnail.extension}
+          <div key={index}>
+            <img
+              src={result.thumbnail.path + '.' + result.thumbnail.extension}
               alt="Marvel-character"
-              aspectRatio={AspectRatio.original}
-              size={Size.xl}
+              className={"item-image"}
             />
             <span>{result.name}</span>
-          </ListItem>
+          </div>
         ))
       }
-    </List>
+    </div>
   );
 };
 
