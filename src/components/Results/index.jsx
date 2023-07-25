@@ -18,8 +18,11 @@ const Results = ({
 
   return (
     <FlexBox className="lumx-flex-box--orientation-vertical lumx-flex-box--v-align-center">
-      <CharactersSection results={results}/>
-      <Pagination paginate={paginate} totalCount={totalCount}/>
+      {totalCount > 0 ? <><CharactersSection results={results}/>
+        <Pagination paginate={paginate} totalCount={totalCount}/></>
+        :
+        <h4>No results found!</h4>
+      }
     </FlexBox>
   );
 };

@@ -10,7 +10,7 @@ const MainPage = () => {
   return (
     <>
       <Header setResults={setResults} setTotalCount={setTotalCount} setSearchTerm={setSearchTerm}/>
-      {totalCount > 0 && <Results setResults={setResults} results={results} totalCount={totalCount} searchTerm={searchTerm}/>}
+      {searchTerm && <Results setResults={setResults} results={results} totalCount={totalCount} searchTerm={searchTerm}/>}
     </>
   );
 };
