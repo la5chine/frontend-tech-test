@@ -14,6 +14,7 @@ const CharactersSection = ({ results }) => {
               src={result.thumbnail.path + '.' + result.thumbnail.extension}
               alt="Marvel-character"
               className={"item-image"}
+              loading="lazy"
             />
             <div className="result-card-info">
               <h1>{result.name}</h1>
