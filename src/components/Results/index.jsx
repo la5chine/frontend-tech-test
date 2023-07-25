@@ -19,7 +19,8 @@ const Results = ({
   };
 
   return (
-    <FlexBox className="lumx-flex-box--orientation-vertical lumx-flex-box--v-align-center">
+    <FlexBox
+      className="lumx-flex-box--orientation-vertical lumx-flex-box--v-align-center lumx-spacing-margin-vertical-huge">
       {isLoading ?
         <div className="loader-container">
           <div className="spinner"></div>
