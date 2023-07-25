@@ -11,11 +11,14 @@ const Results = ({
   totalCount,
   searchTerm,
   isLoading,
+  setIsLoading,
   hasError
 }) => {
   const paginate = (pageNumber) => {
+    setIsLoading(true);
     searchCharacters(searchTerm, (pageNumber - 1) * 4)
-      .then(({ data }) => setResults(data.data?.results ? data.data.results : []));
+      .then(({ data }) => setResults(data.data?.results ? data.data.results : []))
+      .finally(() => setIsLoading(false));
   };
 
   return (

@@ -24,6 +24,7 @@ const MainPage = () => {
                  totalCount={totalCount}
                  searchTerm={searchTerm}
                  isLoading={isLoading}
+                 setIsLoading={setIsLoading}
                  hasError={hasError}
         />
       }
