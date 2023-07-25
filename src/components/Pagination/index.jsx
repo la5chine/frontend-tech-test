@@ -37,7 +37,7 @@ const Pagination = ({
   }, [totalCount, getShownPages]);
 
   return (
-    <section>
+    <section className="pagination-section">
       {shownPages.map((pageNumber, index) =>
         <Button value={pageNumber} onClick={(event) => onPageChange(event.currentTarget.value)}
                 key={index} isDisabled={currentPage == pageNumber}>{pageNumber}</Button>
