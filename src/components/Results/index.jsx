@@ -2,6 +2,7 @@ import React from 'react';
 import CharactersSection from '../CharactersSection';
 import Pagination from '../Pagination';
 import { searchCharacters } from '../../api';
+import { FlexBox } from '@lumx/react';
 
 
 const Results = ({
@@ -16,10 +17,10 @@ const Results = ({
   };
 
   return (
-    <>
+    <FlexBox className="lumx-flex-box--orientation-vertical lumx-flex-box--v-align-center">
       <CharactersSection results={results}/>
       <Pagination paginate={paginate} totalCount={totalCount}/>
-    </>
+    </FlexBox>
   );
 };
 
