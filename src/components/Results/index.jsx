@@ -9,7 +9,9 @@ const Results = ({
   setResults,
   results,
   totalCount,
-  searchTerm
+  searchTerm,
+  isLoading,
+  hasError
 }) => {
   const paginate = (pageNumber) => {
     searchCharacters(searchTerm, (pageNumber - 1) * 4)
@@ -18,8 +20,16 @@ const Results = ({
 
   return (
     <FlexBox className="lumx-flex-box--orientation-vertical lumx-flex-box--v-align-center">
-      {totalCount > 0 ? <><CharactersSection results={results}/>
-        <Pagination paginate={paginate} totalCount={totalCount}/></>
+      { isLoading ?
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+        :
+        totalCount > 0 ?
+        <>
+          <CharactersSection results={results}/>
+          <Pagination paginate={paginate} totalCount={totalCount}/>
+        </>
         :
         <h4>No results found!</h4>
       }

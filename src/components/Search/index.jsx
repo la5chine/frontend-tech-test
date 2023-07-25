@@ -3,27 +3,34 @@ import { TextField, Theme } from '@lumx/react';
 import { mdiMagnify } from '@lumx/icons';
 import { searchCharacters } from '../../api';
 
-const Search = ({ setResults, setTotalCount, setSearchTerm }) => {
+const Search = ({ setResults, setTotalCount, setSearchTerm, setIsLoading, setHasError, hasError }) => {
   const [isValid, setIsValid] = useState(true)
-  const [hasError, setHasError] = useState(false)
 
   const fetchUserData = (searchTerm) => {
+    setIsLoading(true)
     setSearchTerm(searchTerm);
     if (searchTerm === '') {
       setHasError(false)
       setIsValid(true)
       setTotalCount(0)
       setResults([])
+      setIsLoading(false)
       return
     }
     searchCharacters(searchTerm)
+      .then(({data}) => data)
       .then(({ data }) => {
-        setTotalCount(data.data?.total ? data.data.total : 0);
-        setResults(data.data?.results ? data.data.results : []);
+        setTotalCount(data?.total ? data.total : 0);
+        setResults(data?.results ? data.results : []);
 
-        setHasError(data.data?.total === 0);
-        setIsValid(data.data?.total > 0);
-      });
+        setHasError(data?.total === 0);
+        setIsValid(data?.total > 0);
+
+        setIsLoading(false)
+      }).catch(() => {
+      setHasError(true);
+      setIsLoading(false);
+    });
 
   };
   return (
