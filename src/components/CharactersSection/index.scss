@@ -1,0 +1,26 @@
+.result-container {
+    display: grid;
+    gap: 16px;
+
+    width: #{"min(80%, 1000px)"};
+    margin: 20px 0;
+}
+
+.result-card {
+    display: flex;
+    gap: 5%;
+
+    border: 3px solid lumx-color-variant('primary', 'N');
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.result-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.item-image {
+    max-width: 200px;
+}
