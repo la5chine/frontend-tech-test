@@ -4,9 +4,9 @@ import { Button } from '@lumx/react';
 
 const Pagination = ({
   totalCount,
+  currentPage,
   paginate
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4;
   const NumberOfPages = Math.ceil(totalCount / postsPerPage);
 
@@ -23,24 +23,23 @@ const Pagination = ({
       });
   }, [NumberOfPages]);
 
-  const [shownPages, setShownPages] = useState(getShownPages(1));
+  const [shownPages, setShownPages] = useState(getShownPages(currentPage));
 
   const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
     setShownPages(getShownPages(pageNumber));
     return paginate(pageNumber);
   };
 
 
   useEffect(() => {
-    setShownPages(getShownPages(1));
-  }, [totalCount, getShownPages]);
+    setShownPages(getShownPages(currentPage));
+  }, [totalCount, getShownPages, currentPage]);
 
   return (
     <section className="pagination-section">
       {shownPages.map((pageNumber, index) =>
         <Button value={pageNumber} onClick={(event) => onPageChange(event.currentTarget.value)}
-                key={index} isDisabled={currentPage == pageNumber}>{pageNumber}</Button>
+                key={index} isDisabled={(currentPage == pageNumber)}>{pageNumber}</Button>
       )}
     </section>
   );
