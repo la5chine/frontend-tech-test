@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { TextField, Theme } from '@lumx/react';
 import { mdiMagnify } from '@lumx/icons';
 import { searchCharacters } from '../../api';
 
 const Search = ({ setResults, setTotalCount, setSearchTerm, setIsLoading, setHasError, hasError }) => {
-  const [isValid, setIsValid] = useState(true)
+  const [isValid, setIsValid] = useState(true);
+
+  const debounce = (callback, wait) => {
+    let timeoutId = null;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        callback.apply(null, args);
+      }, wait);
+    };
+  };
+
+  const handleOnChange = useMemo(
+    () => debounce((searchTerm) => {
+      fetchUserData(searchTerm);
+    }, 250),
+    []
+  );
 
   const fetchUserData = (searchTerm) => {
-    setIsLoading(true)
+    setIsLoading(true);
     setSearchTerm(searchTerm);
     if (searchTerm === '') {
-      setHasError(false)
-      setIsValid(true)
-      setTotalCount(0)
-      setResults([])
-      setIsLoading(false)
-      return
+      setHasError(false);
+      setIsValid(true);
+      setTotalCount(0);
+      setResults([]);
+      setIsLoading(false);
+      return;
     }
     searchCharacters(searchTerm)
-      .then(({data}) => data)
+      .then(({ data }) => data)
       .then(({ data }) => {
         setTotalCount(data?.total ? data.total : 0);
         setResults(data?.results ? data.results : []);
@@ -26,17 +43,20 @@ const Search = ({ setResults, setTotalCount, setSearchTerm, setIsLoading, setHas
         setHasError(data?.total === 0);
         setIsValid(data?.total > 0);
 
-        setIsLoading(false)
-      }).catch(() => {
-      setHasError(true);
-      setIsLoading(false);
-    });
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setHasError(true);
+        setIsLoading(false);
+      });
 
   };
   return (
-    <TextField theme={Theme.dark} placeholder="Search ..."
-               icon={mdiMagnify} onChange={fetchUserData}
-               clearButtonProps={{ label: 'Icon'}}
+    <TextField theme={Theme.dark}
+               placeholder="Search ..."
+               icon={mdiMagnify}
+               onChange={handleOnChange}
+               clearButtonProps={{ label: 'Icon' }}
                isValid={isValid}
                hasError={hasError}
     />
