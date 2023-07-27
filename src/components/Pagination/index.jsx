@@ -11,7 +11,7 @@ const Pagination = ({
   const NumberOfPages = Math.ceil(totalCount / postsPerPage);
 
   const getShownPages = useCallback((selectedPage) => {
-    const dummyShownPages = [1, 2, parseInt(selectedPage) - 1, parseInt(selectedPage), parseInt(selectedPage),
+    const dummyShownPages = [1, 2, parseInt(selectedPage) - 1, parseInt(selectedPage), parseInt(selectedPage) + 1,
       NumberOfPages - 1, NumberOfPages];
     return dummyShownPages.filter(
       (pageNumber, index) => {
@@ -39,7 +39,7 @@ const Pagination = ({
     <section className="pagination-section">
       {shownPages.map((pageNumber, index) =>
         <Button value={pageNumber} onClick={(event) => onPageChange(event.currentTarget.value)}
-                key={index} isDisabled={(currentPage == pageNumber)}>{pageNumber}</Button>
+                key={index} isDisabled={(parseInt(currentPage) === pageNumber)}>{pageNumber}</Button>
       )}
     </section>
   );
