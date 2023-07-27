@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CharactersSection from '../CharactersSection';
 import Pagination from '../Pagination';
 import { searchCharacters } from '../../api';
@@ -25,6 +25,10 @@ const Results = ({
       })
       .finally(() => setIsLoading(false));
   };
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchTerm])
 
   return (
     <FlexBox
