@@ -40,8 +40,8 @@ const Search = ({ setResults, setTotalCount, setSearchTerm, setIsLoading, setHas
         setTotalCount(data?.total ? data.total : 0);
         setResults(data?.results ? data.results : []);
 
-        setHasError(data?.total === 0);
-        setIsValid(data?.total > 0);
+        setHasError(false);
+        setIsValid(true);
 
         setIsLoading(false);
       })
