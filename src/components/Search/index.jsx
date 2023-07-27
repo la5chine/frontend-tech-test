@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { TextField, Theme } from '@lumx/react';
 import { mdiMagnify } from '@lumx/icons';
 import { searchCharacters } from '../../api';
@@ -16,14 +16,7 @@ const Search = ({ setResults, setTotalCount, setSearchTerm, setIsLoading, setHas
     };
   };
 
-  const handleOnChange = useMemo(
-    () => debounce((searchTerm) => {
-      fetchUserData(searchTerm);
-    }, 250),
-    []
-  );
-
-  const fetchUserData = (searchTerm) => {
+  const fetchUserData = useCallback((searchTerm) => {
     setIsLoading(true);
     setSearchTerm(searchTerm);
     if (searchTerm === '') {
@@ -49,7 +42,14 @@ const Search = ({ setResults, setTotalCount, setSearchTerm, setIsLoading, setHas
         setIsLoading(false);
       });
 
-  };
+  }, [setHasError, setIsLoading, setIsValid, setResults, setTotalCount, setSearchTerm])
+
+  const handleOnChange = useMemo(
+    () => debounce((searchTerm) => {
+      fetchUserData(searchTerm);
+    }, 250),
+    [fetchUserData]
+  );
   return (
     <TextField theme={Theme.dark}
                placeholder="Search ..."
