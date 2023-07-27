@@ -1,3 +1,5 @@
+$medium: 800px;
+
 .result-container {
     display: grid;
     gap: 16px;
@@ -14,6 +16,11 @@
     border: 3px solid lumx-color-variant('primary', 'N');
     border-radius: 10px;
     padding: 8px;
+
+    @media screen and (max-width: $medium) {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .result-card-info {
@@ -26,4 +33,14 @@
     max-width: 200px;
     height: fit-content;
     margin: auto 0;
+}
+
+.chips-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chips-container a {
+    width: fit-content;
+    margin: 4px 0;
 }

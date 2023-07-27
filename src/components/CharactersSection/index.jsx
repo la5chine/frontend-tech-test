@@ -19,7 +19,7 @@ const CharactersSection = ({ results }) => {
             <div className="result-card-info">
               <h1>{result.name}</h1>
               <span>{result.description}</span>
-              <div>
+              <div className="chips-container">
                 <Chip>#comics: {result.comics.available}</Chip>
                 <Chip>#series: {result.series.available}</Chip>
                 <Chip>#stories: {result.stories.available}</Chip>
