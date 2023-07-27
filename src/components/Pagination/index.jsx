@@ -11,7 +11,7 @@ const Pagination = ({
   const NumberOfPages = Math.ceil(totalCount / postsPerPage);
 
   const getShownPages = useCallback((selectedPage) => {
-    const dummyShownPages = [1, 2, parseInt(selectedPage), parseInt(selectedPage) + 1, parseInt(selectedPage) + 2,
+    const dummyShownPages = [1, 2, parseInt(selectedPage) - 1, parseInt(selectedPage), parseInt(selectedPage),
       NumberOfPages - 1, NumberOfPages];
     return dummyShownPages.filter(
       (pageNumber, index) => {
