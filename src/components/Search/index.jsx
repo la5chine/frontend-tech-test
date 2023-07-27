@@ -42,7 +42,6 @@ const Search = ({ setResults, setTotalCount, setSearchTerm, setIsLoading, setHas
 
         setHasError(false);
         setIsValid(true);
-
         setIsLoading(false);
       })
       .catch(() => {
